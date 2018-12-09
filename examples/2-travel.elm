@@ -1,14 +1,12 @@
+import Browser exposing ( element)
 import Html exposing (Html, Attribute, div, h1, input, p, text)
 import Html.Attributes exposing (checked, style, type_)
 import Html.Events exposing (onClick)
 import Html.Lazy exposing (lazy)
 import Table exposing (defaultCustomizations)
-import Time exposing (Time)
-
-
 
 main =
-  Html.program
+  Browser.element
     { init = init missionSights
     , update = update
     , view = view
@@ -25,9 +23,16 @@ type alias Model =
   , tableState : Table.State
   }
 
+type alias TimeSpan =
+  { hours: Float
+  , minutes: Float
+  }
 
-init : List Sight -> ( Model, Cmd Msg )
-init sights =
+type alias Flags = {}
+
+
+init : List Sight -> Flags -> ( Model, Cmd Msg )
+init sights _ =
   let
     model =
       { sights = sights
@@ -91,31 +96,36 @@ viewSummary allSights =
     sights ->
       let
         time =
-          List.sum (List.map .time sights)
+          sumTimeSpan (List.map .time sights)
 
         price =
           List.sum (List.map .price sights)
 
         summary =
-          "That is " ++ timeToString time ++ " of fun, costing $" ++ toString price
+          "That is " ++ timeToString time ++ " of fun, costing $" ++ String.fromFloat price
       in
         p [] [ text summary ]
 
+sumTimeSpan : List TimeSpan -> TimeSpan
+sumTimeSpan spans =
+  { hours = List.sum (List.map (.hours) spans)
+  , minutes = List.sum (List.map (.minutes) spans)
+  }
 
-timeToString : Time -> String
+timeToString : TimeSpan -> String
 timeToString time =
   let
     hours =
-      case floor (Time.inHours time) of
+      case floor (time.hours) of
         0 -> ""
         1 -> "1 hour"
-        n -> toString n ++ " hours"
+        n -> String.fromInt n ++ " hours"
 
     minutes =
-      case rem (round (Time.inMinutes time)) 60 of
+      case modBy 60 (round (time.minutes)) of
         0 -> ""
         1 -> "1 minute"
-        n -> toString n ++ " minutes"
+        n -> String.fromInt n ++ " minutes"
   in
     hours ++ " " ++ minutes
 
@@ -144,7 +154,7 @@ config =
 toRowAttrs : Sight -> List (Attribute Msg)
 toRowAttrs sight =
   [ onClick (ToggleSelected sight.name)
-  , style [ ("background", if sight.selected then "#CEFAF8" else "white") ]
+  , style "backgroundColor" (if sight.selected then "#CEFAF8" else "white")
   ]
 
 
@@ -153,9 +163,8 @@ timeColumn =
   Table.customColumn
     { name = "Time"
     , viewData = timeToString << .time
-    , sorter = Table.increasingOrDecreasingBy .time
+    , sorter = Table.unsortable
     }
-
 
 checkboxColumn : Table.Column Sight Msg
 checkboxColumn =
@@ -179,7 +188,7 @@ viewCheckbox {selected} =
 
 type alias Sight =
   { name : String
-  , time : Time
+  , time : TimeSpan
   , price : Float
   , rating : Float
   , selected : Bool
@@ -188,12 +197,12 @@ type alias Sight =
 
 missionSights : List Sight
 missionSights =
-  [ Sight "Eat a Burrito" (30 * Time.minute) 7 4.6 False
-  , Sight "Buy drugs in Dolores park" Time.hour 20 4.8 False
-  , Sight "Armory Tour" (1.5 * Time.hour) 27 4.5 False
-  , Sight "Tartine Bakery" Time.hour 10 4.1 False
-  , Sight "Have Brunch" (2 * Time.hour) 25 4.2 False
-  , Sight "Get catcalled at BART" (5 * Time.minute) 0 1.6 False
-  , Sight "Buy a painting at \"Stuff\"" (45 * Time.minute) 400 4.7 False
-  , Sight "McDonalds at 24th" (20 * Time.minute) 5 2.8 False
+  [ Sight "Eat a Burrito" ( TimeSpan 0 30 ) 7 4.6 False
+  , Sight "Buy drugs in Dolores park" ( TimeSpan 1 0 ) 20 4.8 False
+  , Sight "Armory Tour" ( TimeSpan 1 30 ) 27 4.5 False
+  , Sight "Tartine Bakery" ( TimeSpan 1 0 ) 10 4.1 False
+  , Sight "Have Brunch" ( TimeSpan 2 0 ) 25 4.2 False
+  , Sight "Get catcalled at BART" ( TimeSpan 0 5 ) 0 1.6 False
+  , Sight "Buy a painting at \"Stuff\"" ( TimeSpan 0 45 ) 400 4.7 False
+  , Sight "McDonalds at 24th" ( TimeSpan 0 20 ) 5 2.8 False
   ]
