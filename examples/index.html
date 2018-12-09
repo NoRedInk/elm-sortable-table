@@ -9,7 +9,12 @@
 </head>
 
 <body>
-	<script type="text/javascript">Elm.Main.fullscreen();</script>
+	<div id="elm-mount"></div>
+	<script type="text/javascript">
+	Elm.Main.init({
+		node: document.getElementById('elm-mount')
+	});
+	</script>
 </body>
 
 </html>

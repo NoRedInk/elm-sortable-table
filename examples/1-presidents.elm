@@ -1,18 +1,16 @@
+import Browser exposing (element)
 import Html exposing (Html, div, h1, input, text)
 import Html.Attributes exposing (placeholder)
 import Html.Events exposing (onInput)
 import Table
 
-
-
 main =
-  Html.program
-    { init = init presidents
+  Browser.element
+    { init = (init presidents)
     , update = update
     , view = view
     , subscriptions = \_ -> Sub.none
     }
-
 
 
 -- MODEL
@@ -24,9 +22,10 @@ type alias Model =
   , query : String
   }
 
+type alias Flags = {}
 
-init : List Person -> ( Model, Cmd Msg )
-init people =
+init : (List Person) -> Flags -> ( Model, Cmd Msg )
+init people flags =
   let
     model =
       { people = people
