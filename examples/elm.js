@@ -4795,73 +4795,169 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var author$project$Main$init = F2(
-	function (people, _n0) {
+	function (sights, _n0) {
 		var model = {
-			people: people,
-			query: '',
+			sights: sights,
 			tableState: NoRedInk$elm_sortable_table$Table$initialSort('Year')
 		};
 		return _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
 	});
-var author$project$Main$Person = F4(
-	function (name, year, city, state) {
-		return {city: city, name: name, state: state, year: year};
+var author$project$Main$Sight = F5(
+	function (name, time, price, rating, selected) {
+		return {name: name, price: price, rating: rating, selected: selected, time: time};
 	});
-var author$project$Main$presidents = _List_fromArray(
+var author$project$Main$TimeSpan = F2(
+	function (hours, minutes) {
+		return {hours: hours, minutes: minutes};
+	});
+var author$project$Main$missionSights = _List_fromArray(
 	[
-		A4(author$project$Main$Person, 'George Washington', 1732, 'Westmoreland County', 'Virginia'),
-		A4(author$project$Main$Person, 'John Adams', 1735, 'Braintree', 'Massachusetts'),
-		A4(author$project$Main$Person, 'Thomas Jefferson', 1743, 'Shadwell', 'Virginia'),
-		A4(author$project$Main$Person, 'James Madison', 1751, 'Port Conway', 'Virginia'),
-		A4(author$project$Main$Person, 'James Monroe', 1758, 'Monroe Hall', 'Virginia'),
-		A4(author$project$Main$Person, 'Andrew Jackson', 1767, 'Waxhaws Region', 'South/North Carolina'),
-		A4(author$project$Main$Person, 'John Quincy Adams', 1767, 'Braintree', 'Massachusetts'),
-		A4(author$project$Main$Person, 'William Henry Harrison', 1773, 'Charles City County', 'Virginia'),
-		A4(author$project$Main$Person, 'Martin Van Buren', 1782, 'Kinderhook', 'New York'),
-		A4(author$project$Main$Person, 'Zachary Taylor', 1784, 'Barboursville', 'Virginia'),
-		A4(author$project$Main$Person, 'John Tyler', 1790, 'Charles City County', 'Virginia'),
-		A4(author$project$Main$Person, 'James Buchanan', 1791, 'Cove Gap', 'Pennsylvania'),
-		A4(author$project$Main$Person, 'James K. Polk', 1795, 'Pineville', 'North Carolina'),
-		A4(author$project$Main$Person, 'Millard Fillmore', 1800, 'Summerhill', 'New York'),
-		A4(author$project$Main$Person, 'Franklin Pierce', 1804, 'Hillsborough', 'New Hampshire'),
-		A4(author$project$Main$Person, 'Andrew Johnson', 1808, 'Raleigh', 'North Carolina'),
-		A4(author$project$Main$Person, 'Abraham Lincoln', 1809, 'Sinking spring', 'Kentucky'),
-		A4(author$project$Main$Person, 'Ulysses S. Grant', 1822, 'Point Pleasant', 'Ohio'),
-		A4(author$project$Main$Person, 'Rutherford B. Hayes', 1822, 'Delaware', 'Ohio'),
-		A4(author$project$Main$Person, 'Chester A. Arthur', 1829, 'Fairfield', 'Vermont'),
-		A4(author$project$Main$Person, 'James A. Garfield', 1831, 'Moreland Hills', 'Ohio'),
-		A4(author$project$Main$Person, 'Benjamin Harrison', 1833, 'North Bend', 'Ohio'),
-		A4(author$project$Main$Person, 'Grover Cleveland', 1837, 'Caldwell', 'New Jersey'),
-		A4(author$project$Main$Person, 'William McKinley', 1843, 'Niles', 'Ohio'),
-		A4(author$project$Main$Person, 'Woodrow Wilson', 1856, 'Staunton', 'Virginia'),
-		A4(author$project$Main$Person, 'William Howard Taft', 1857, 'Cincinnati', 'Ohio'),
-		A4(author$project$Main$Person, 'Theodore Roosevelt', 1858, 'New York City', 'New York'),
-		A4(author$project$Main$Person, 'Warren G. Harding', 1865, 'Blooming Grove', 'Ohio'),
-		A4(author$project$Main$Person, 'Calvin Coolidge', 1872, 'Plymouth', 'Vermont'),
-		A4(author$project$Main$Person, 'Herbert Hoover', 1874, 'West Branch', 'Iowa'),
-		A4(author$project$Main$Person, 'Franklin D. Roosevelt', 1882, 'Hyde Park', 'New York'),
-		A4(author$project$Main$Person, 'Harry S. Truman', 1884, 'Lamar', 'Missouri'),
-		A4(author$project$Main$Person, 'Dwight D. Eisenhower', 1890, 'Denison', 'Texas'),
-		A4(author$project$Main$Person, 'Lyndon B. Johnson', 1908, 'Stonewall', 'Texas'),
-		A4(author$project$Main$Person, 'Ronald Reagan', 1911, 'Tampico', 'Illinois'),
-		A4(author$project$Main$Person, 'Richard M. Nixon', 1913, 'Yorba Linda', 'California'),
-		A4(author$project$Main$Person, 'Gerald R. Ford', 1913, 'Omaha', 'Nebraska'),
-		A4(author$project$Main$Person, 'John F. Kennedy', 1917, 'Brookline', 'Massachusetts'),
-		A4(author$project$Main$Person, 'George H. W. Bush', 1924, 'Milton', 'Massachusetts'),
-		A4(author$project$Main$Person, 'Jimmy Carter', 1924, 'Plains', 'Georgia'),
-		A4(author$project$Main$Person, 'George W. Bush', 1946, 'New Haven', 'Connecticut'),
-		A4(author$project$Main$Person, 'Bill Clinton', 1946, 'Hope', 'Arkansas'),
-		A4(author$project$Main$Person, 'Barack Obama', 1961, 'Honolulu', 'Hawaii'),
-		A4(author$project$Main$Person, 'Donald Trump', 1946, 'New York City', 'New York')
+		A5(
+		author$project$Main$Sight,
+		'Eat a Burrito',
+		A2(author$project$Main$TimeSpan, 0, 30),
+		7,
+		4.6,
+		false),
+		A5(
+		author$project$Main$Sight,
+		'Buy drugs in Dolores park',
+		A2(author$project$Main$TimeSpan, 1, 0),
+		20,
+		4.8,
+		false),
+		A5(
+		author$project$Main$Sight,
+		'Armory Tour',
+		A2(author$project$Main$TimeSpan, 1, 30),
+		27,
+		4.5,
+		false),
+		A5(
+		author$project$Main$Sight,
+		'Tartine Bakery',
+		A2(author$project$Main$TimeSpan, 1, 0),
+		10,
+		4.1,
+		false),
+		A5(
+		author$project$Main$Sight,
+		'Have Brunch',
+		A2(author$project$Main$TimeSpan, 2, 0),
+		25,
+		4.2,
+		false),
+		A5(
+		author$project$Main$Sight,
+		'Get catcalled at BART',
+		A2(author$project$Main$TimeSpan, 0, 5),
+		0,
+		1.6,
+		false),
+		A5(
+		author$project$Main$Sight,
+		'Buy a painting at \"Stuff\"',
+		A2(author$project$Main$TimeSpan, 0, 45),
+		400,
+		4.7,
+		false),
+		A5(
+		author$project$Main$Sight,
+		'McDonalds at 24th',
+		A2(author$project$Main$TimeSpan, 0, 20),
+		5,
+		2.8,
+		false)
 	]);
+var elm$core$Basics$not = _Basics_not;
+var author$project$Main$toggle = F2(
+	function (name, sight) {
+		return _Utils_eq(sight.name, name) ? _Utils_update(
+			sight,
+			{selected: !sight.selected}) : sight;
+	});
+var elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							elm$core$List$foldl,
+							fn,
+							acc,
+							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
+				}
+			}
+		}
+	});
+var elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
+	});
+var elm$core$List$map = F2(
+	function (f, xs) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					return A2(
+						elm$core$List$cons,
+						f(x),
+						acc);
+				}),
+			_List_Nil,
+			xs);
+	});
 var author$project$Main$update = F2(
 	function (msg, model) {
-		if (msg.$ === 'SetQuery') {
-			var newQuery = msg.a;
+		if (msg.$ === 'ToggleSelected') {
+			var name = msg.a;
 			return _Utils_Tuple2(
 				_Utils_update(
 					model,
-					{query: newQuery}),
+					{
+						sights: A2(
+							elm$core$List$map,
+							author$project$Main$toggle(name),
+							model.sights)
+					}),
 				elm$core$Platform$Cmd$none);
 		} else {
 			var newState = msg.a;
@@ -4978,7 +5074,6 @@ var NoRedInk$elm_sortable_table$Table$onClick = F3(
 					elm$json$Json$Decode$succeed(name),
 					elm$json$Json$Decode$succeed(isReversed))));
 	});
-var elm$core$Basics$not = _Basics_not;
 var NoRedInk$elm_sortable_table$Table$toHeaderInfo = F3(
 	function (_n0, toMsg, _n1) {
 		var sortName = _n0.a;
@@ -5029,75 +5124,6 @@ var NoRedInk$elm_sortable_table$Table$viewCell = F2(
 		var viewData = _n0.viewData;
 		var details = viewData(data);
 		return A2(elm$html$Html$td, details.attributes, details.children);
-	});
-var elm$core$List$foldrHelper = F4(
-	function (fn, acc, ctr, ls) {
-		if (!ls.b) {
-			return acc;
-		} else {
-			var a = ls.a;
-			var r1 = ls.b;
-			if (!r1.b) {
-				return A2(fn, a, acc);
-			} else {
-				var b = r1.a;
-				var r2 = r1.b;
-				if (!r2.b) {
-					return A2(
-						fn,
-						a,
-						A2(fn, b, acc));
-				} else {
-					var c = r2.a;
-					var r3 = r2.b;
-					if (!r3.b) {
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(fn, c, acc)));
-					} else {
-						var d = r3.a;
-						var r4 = r3.b;
-						var res = (ctr > 500) ? A3(
-							elm$core$List$foldl,
-							fn,
-							acc,
-							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(
-									fn,
-									c,
-									A2(fn, d, res))));
-					}
-				}
-			}
-		}
-	});
-var elm$core$List$foldr = F3(
-	function (fn, acc, ls) {
-		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
-	});
-var elm$core$List$map = F2(
-	function (f, xs) {
-		return A3(
-			elm$core$List$foldr,
-			F2(
-				function (x, acc) {
-					return A2(
-						elm$core$List$cons,
-						f(x),
-						acc);
-				}),
-			_List_Nil,
-			xs);
 	});
 var elm$html$Html$tr = _VirtualDom_node('tr');
 var NoRedInk$elm_sortable_table$Table$viewRowHelp = F3(
@@ -5178,11 +5204,27 @@ var NoRedInk$elm_sortable_table$Table$view = F3(
 				}
 			}());
 	});
-var author$project$Main$SetQuery = function (a) {
-	return {$: 'SetQuery', a: a};
-};
 var NoRedInk$elm_sortable_table$Table$Config = function (a) {
 	return {$: 'Config', a: a};
+};
+var NoRedInk$elm_sortable_table$Table$customConfig = function (_n0) {
+	var toId = _n0.toId;
+	var toMsg = _n0.toMsg;
+	var columns = _n0.columns;
+	var customizations = _n0.customizations;
+	return NoRedInk$elm_sortable_table$Table$Config(
+		{
+			columns: A2(
+				elm$core$List$map,
+				function (_n1) {
+					var cData = _n1.a;
+					return cData;
+				},
+				columns),
+			customizations: customizations,
+			toId: toId,
+			toMsg: toMsg
+		});
 };
 var NoRedInk$elm_sortable_table$Table$simpleRowAttrs = function (_n0) {
 	return _List_Nil;
@@ -5271,24 +5313,6 @@ var NoRedInk$elm_sortable_table$Table$simpleThead = function (headers) {
 		A2(elm$core$List$map, NoRedInk$elm_sortable_table$Table$simpleTheadHelp, headers));
 };
 var NoRedInk$elm_sortable_table$Table$defaultCustomizations = {caption: elm$core$Maybe$Nothing, rowAttrs: NoRedInk$elm_sortable_table$Table$simpleRowAttrs, tableAttrs: _List_Nil, tbodyAttrs: _List_Nil, tfoot: elm$core$Maybe$Nothing, thead: NoRedInk$elm_sortable_table$Table$simpleThead};
-var NoRedInk$elm_sortable_table$Table$config = function (_n0) {
-	var toId = _n0.toId;
-	var toMsg = _n0.toMsg;
-	var columns = _n0.columns;
-	return NoRedInk$elm_sortable_table$Table$Config(
-		{
-			columns: A2(
-				elm$core$List$map,
-				function (_n1) {
-					var cData = _n1.a;
-					return cData;
-				},
-				columns),
-			customizations: NoRedInk$elm_sortable_table$Table$defaultCustomizations,
-			toId: toId,
-			toMsg: toMsg
-		});
-};
 var NoRedInk$elm_sortable_table$Table$Column = function (a) {
 	return {$: 'Column', a: a};
 };
@@ -5314,16 +5338,17 @@ var elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
-var NoRedInk$elm_sortable_table$Table$intColumn = F2(
-	function (name, toInt) {
+var elm$core$String$fromFloat = _String_fromNumber;
+var NoRedInk$elm_sortable_table$Table$floatColumn = F2(
+	function (name, toFloat) {
 		return NoRedInk$elm_sortable_table$Table$Column(
 			{
 				name: name,
-				sorter: NoRedInk$elm_sortable_table$Table$increasingOrDecreasingBy(toInt),
+				sorter: NoRedInk$elm_sortable_table$Table$increasingOrDecreasingBy(toFloat),
 				viewData: A2(
 					elm$core$Basics$composeL,
-					A2(elm$core$Basics$composeL, NoRedInk$elm_sortable_table$Table$textDetails, elm$core$String$fromInt),
-					toInt)
+					A2(elm$core$Basics$composeL, NoRedInk$elm_sortable_table$Table$textDetails, elm$core$String$fromFloat),
+					toFloat)
 			});
 	});
 var NoRedInk$elm_sortable_table$Table$stringColumn = F2(
@@ -5338,40 +5363,179 @@ var NoRedInk$elm_sortable_table$Table$stringColumn = F2(
 var author$project$Main$SetTableState = function (a) {
 	return {$: 'SetTableState', a: a};
 };
-var author$project$Main$config = NoRedInk$elm_sortable_table$Table$config(
+var NoRedInk$elm_sortable_table$Table$None = {$: 'None'};
+var NoRedInk$elm_sortable_table$Table$unsortable = NoRedInk$elm_sortable_table$Table$None;
+var NoRedInk$elm_sortable_table$Table$veryCustomColumn = NoRedInk$elm_sortable_table$Table$Column;
+var elm$html$Html$input = _VirtualDom_node('input');
+var elm$json$Json$Encode$bool = _Json_wrap;
+var elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			elm$json$Json$Encode$bool(bool));
+	});
+var elm$html$Html$Attributes$checked = elm$html$Html$Attributes$boolProperty('checked');
+var elm$json$Json$Encode$string = _Json_wrap;
+var elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			elm$json$Json$Encode$string(string));
+	});
+var elm$html$Html$Attributes$type_ = elm$html$Html$Attributes$stringProperty('type');
+var author$project$Main$viewCheckbox = function (_n0) {
+	var selected = _n0.selected;
+	return A2(
+		NoRedInk$elm_sortable_table$Table$HtmlDetails,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$input,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$type_('checkbox'),
+						elm$html$Html$Attributes$checked(selected)
+					]),
+				_List_Nil)
+			]));
+};
+var author$project$Main$checkboxColumn = NoRedInk$elm_sortable_table$Table$veryCustomColumn(
+	{name: '', sorter: NoRedInk$elm_sortable_table$Table$unsortable, viewData: author$project$Main$viewCheckbox});
+var NoRedInk$elm_sortable_table$Table$ColumnData = F3(
+	function (name, viewData, sorter) {
+		return {name: name, sorter: sorter, viewData: viewData};
+	});
+var NoRedInk$elm_sortable_table$Table$customColumn = function (_n0) {
+	var name = _n0.name;
+	var viewData = _n0.viewData;
+	var sorter = _n0.sorter;
+	return NoRedInk$elm_sortable_table$Table$Column(
+		A3(
+			NoRedInk$elm_sortable_table$Table$ColumnData,
+			name,
+			A2(elm$core$Basics$composeL, NoRedInk$elm_sortable_table$Table$textDetails, viewData),
+			sorter));
+};
+var elm$core$Basics$modBy = _Basics_modBy;
+var elm$core$Basics$round = _Basics_round;
+var author$project$Main$timeToString = function (time) {
+	var minutes = function () {
+		var _n1 = A2(
+			elm$core$Basics$modBy,
+			60,
+			elm$core$Basics$round(time.minutes));
+		switch (_n1) {
+			case 0:
+				return '';
+			case 1:
+				return '1 minute';
+			default:
+				var n = _n1;
+				return elm$core$String$fromInt(n) + ' minutes';
+		}
+	}();
+	var hours = function () {
+		var _n0 = elm$core$Basics$floor(time.hours);
+		switch (_n0) {
+			case 0:
+				return '';
+			case 1:
+				return '1 hour';
+			default:
+				var n = _n0;
+				return elm$core$String$fromInt(n) + ' hours';
+		}
+	}();
+	return hours + (' ' + minutes);
+};
+var author$project$Main$timeColumn = NoRedInk$elm_sortable_table$Table$customColumn(
+	{
+		name: 'Time',
+		sorter: NoRedInk$elm_sortable_table$Table$unsortable,
+		viewData: A2(
+			elm$core$Basics$composeL,
+			author$project$Main$timeToString,
+			function ($) {
+				return $.time;
+			})
+	});
+var author$project$Main$ToggleSelected = function (a) {
+	return {$: 'ToggleSelected', a: a};
+};
+var elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		elm$html$Html$Events$on,
+		'click',
+		elm$json$Json$Decode$succeed(msg));
+};
+var author$project$Main$toRowAttrs = function (sight) {
+	return _List_fromArray(
+		[
+			elm$html$Html$Events$onClick(
+			author$project$Main$ToggleSelected(sight.name)),
+			A2(
+			elm$html$Html$Attributes$style,
+			'backgroundColor',
+			sight.selected ? '#CEFAF8' : 'white')
+		]);
+};
+var author$project$Main$config = NoRedInk$elm_sortable_table$Table$customConfig(
 	{
 		columns: _List_fromArray(
 			[
+				author$project$Main$checkboxColumn,
 				A2(
 				NoRedInk$elm_sortable_table$Table$stringColumn,
 				'Name',
 				function ($) {
 					return $.name;
 				}),
+				author$project$Main$timeColumn,
 				A2(
-				NoRedInk$elm_sortable_table$Table$intColumn,
-				'Year',
+				NoRedInk$elm_sortable_table$Table$floatColumn,
+				'Price',
 				function ($) {
-					return $.year;
+					return $.price;
 				}),
 				A2(
-				NoRedInk$elm_sortable_table$Table$stringColumn,
-				'City',
+				NoRedInk$elm_sortable_table$Table$floatColumn,
+				'Rating',
 				function ($) {
-					return $.city;
-				}),
-				A2(
-				NoRedInk$elm_sortable_table$Table$stringColumn,
-				'State',
-				function ($) {
-					return $.state;
+					return $.rating;
 				})
 			]),
+		customizations: _Utils_update(
+			NoRedInk$elm_sortable_table$Table$defaultCustomizations,
+			{rowAttrs: author$project$Main$toRowAttrs}),
 		toId: function ($) {
 			return $.name;
 		},
 		toMsg: author$project$Main$SetTableState
 	});
+var elm$core$List$sum = function (numbers) {
+	return A3(elm$core$List$foldl, elm$core$Basics$add, 0, numbers);
+};
+var author$project$Main$sumTimeSpan = function (spans) {
+	return {
+		hours: elm$core$List$sum(
+			A2(
+				elm$core$List$map,
+				function ($) {
+					return $.hours;
+				},
+				spans)),
+		minutes: elm$core$List$sum(
+			A2(
+				elm$core$List$map,
+				function ($) {
+					return $.minutes;
+				},
+				spans))
+	};
+};
 var elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -5383,70 +5547,55 @@ var elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
-var elm$core$String$contains = _String_contains;
-var elm$core$String$toLower = _String_toLower;
+var elm$html$Html$p = _VirtualDom_node('p');
+var author$project$Main$viewSummary = function (allSights) {
+	var _n0 = A2(
+		elm$core$List$filter,
+		function ($) {
+			return $.selected;
+		},
+		allSights);
+	if (!_n0.b) {
+		return A2(
+			elm$html$Html$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					elm$html$Html$text('Click the sights you want to see on your trip!')
+				]));
+	} else {
+		var sights = _n0;
+		var time = author$project$Main$sumTimeSpan(
+			A2(
+				elm$core$List$map,
+				function ($) {
+					return $.time;
+				},
+				sights));
+		var price = elm$core$List$sum(
+			A2(
+				elm$core$List$map,
+				function ($) {
+					return $.price;
+				},
+				sights));
+		var summary = 'That is ' + (author$project$Main$timeToString(time) + (' of fun, costing $' + elm$core$String$fromFloat(price)));
+		return A2(
+			elm$html$Html$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					elm$html$Html$text(summary)
+				]));
+	}
+};
 var elm$html$Html$div = _VirtualDom_node('div');
 var elm$html$Html$h1 = _VirtualDom_node('h1');
-var elm$html$Html$input = _VirtualDom_node('input');
-var elm$json$Json$Encode$string = _Json_wrap;
-var elm$html$Html$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			elm$json$Json$Encode$string(string));
-	});
-var elm$html$Html$Attributes$placeholder = elm$html$Html$Attributes$stringProperty('placeholder');
-var elm$html$Html$Events$alwaysStop = function (x) {
-	return _Utils_Tuple2(x, true);
-};
-var elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
-	return {$: 'MayStopPropagation', a: a};
-};
-var elm$html$Html$Events$stopPropagationOn = F2(
-	function (event, decoder) {
-		return A2(
-			elm$virtual_dom$VirtualDom$on,
-			event,
-			elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
-	});
-var elm$json$Json$Decode$field = _Json_decodeField;
-var elm$json$Json$Decode$at = F2(
-	function (fields, decoder) {
-		return A3(elm$core$List$foldr, elm$json$Json$Decode$field, decoder, fields);
-	});
-var elm$json$Json$Decode$string = _Json_decodeString;
-var elm$html$Html$Events$targetValue = A2(
-	elm$json$Json$Decode$at,
-	_List_fromArray(
-		['target', 'value']),
-	elm$json$Json$Decode$string);
-var elm$html$Html$Events$onInput = function (tagger) {
-	return A2(
-		elm$html$Html$Events$stopPropagationOn,
-		'input',
-		A2(
-			elm$json$Json$Decode$map,
-			elm$html$Html$Events$alwaysStop,
-			A2(elm$json$Json$Decode$map, tagger, elm$html$Html$Events$targetValue)));
-};
+var elm$virtual_dom$VirtualDom$lazy = _VirtualDom_lazy;
+var elm$html$Html$Lazy$lazy = elm$virtual_dom$VirtualDom$lazy;
 var author$project$Main$view = function (_n0) {
-	var people = _n0.people;
+	var sights = _n0.sights;
 	var tableState = _n0.tableState;
-	var query = _n0.query;
-	var lowerQuery = elm$core$String$toLower(query);
-	var acceptablePeople = A2(
-		elm$core$List$filter,
-		A2(
-			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				elm$core$String$contains(lowerQuery),
-				elm$core$String$toLower),
-			function ($) {
-				return $.name;
-			}),
-		people);
 	return A2(
 		elm$html$Html$div,
 		_List_Nil,
@@ -5457,17 +5606,10 @@ var author$project$Main$view = function (_n0) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						elm$html$Html$text('Birthplaces of U.S. Presidents')
+						elm$html$Html$text('Trip Planner')
 					])),
-				A2(
-				elm$html$Html$input,
-				_List_fromArray(
-					[
-						elm$html$Html$Attributes$placeholder('Search by Name'),
-						elm$html$Html$Events$onInput(author$project$Main$SetQuery)
-					]),
-				_List_Nil),
-				A3(NoRedInk$elm_sortable_table$Table$view, author$project$Main$config, tableState, acceptablePeople)
+				A2(elm$html$Html$Lazy$lazy, author$project$Main$viewSummary, sights),
+				A3(NoRedInk$elm_sortable_table$Table$view, author$project$Main$config, tableState, sights)
 			]));
 };
 var elm$browser$Browser$External = function (a) {
@@ -5588,6 +5730,7 @@ var elm$core$String$left = F2(
 	function (n, string) {
 		return (n < 1) ? '' : A3(elm$core$String$slice, 0, n, string);
 	});
+var elm$core$String$contains = _String_contains;
 var elm$core$String$toInt = _String_toInt;
 var elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
@@ -5700,7 +5843,7 @@ var elm$core$Platform$Sub$batch = _Platform_batch;
 var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
 var author$project$Main$main = elm$browser$Browser$element(
 	{
-		init: author$project$Main$init(author$project$Main$presidents),
+		init: author$project$Main$init(author$project$Main$missionSights),
 		subscriptions: function (_n0) {
 			return elm$core$Platform$Sub$none;
 		},
