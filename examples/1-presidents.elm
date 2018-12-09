@@ -25,7 +25,7 @@ type alias Model =
 type alias Flags = {}
 
 init : (List Person) -> Flags -> ( Model, Cmd Msg )
-init people flags =
+init people _ =
   let
     model =
       { people = people

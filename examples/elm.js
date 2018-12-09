@@ -4795,7 +4795,7 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var author$project$Main$init = F2(
-	function (people, flags) {
+	function (people, _n0) {
 		var model = {
 			people: people,
 			query: '',
